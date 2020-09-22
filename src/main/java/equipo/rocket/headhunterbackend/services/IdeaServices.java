@@ -9,7 +9,7 @@ import equipo.rocket.headhunterbackend.model.Idea;
 import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
 
 @Service
-public class ExploreServices {
+public class IdeaServices {
     
     @Autowired
     IdeasPersistance idp =null;

@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import equipo.rocket.headhunterbackend.services.ExploreServices;
+import equipo.rocket.headhunterbackend.services.IdeaServices;
 
 @RestController
 @RequestMapping(value = "/explore")
-public class FiltersAPIController{
+public class IdeasAPIController {
 
     @Autowired
-    ExploreServices es =null;
+    IdeaServices is = null;
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> getAllIdeas(){
+    public ResponseEntity<?> getAllIdeas() {
         try {
-            return new ResponseEntity<>(es.getAllIdeas(),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(is.getAllIdeas(), HttpStatus.ACCEPTED);
         } catch (Exception e) {
-            Logger.getLogger(FiltersAPIController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
