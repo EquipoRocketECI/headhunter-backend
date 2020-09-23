@@ -6,9 +6,9 @@ public class Idea {
 
     private String nombre;
     private String descripcion;
-    private Date fechaLimite;
-    private int montoLimite;
-    private int montoRecolectado;
+    private Date fechalimite;
+    private int montolimite;
+    private int montorecolectado;
     private String categoria;
     private int calificacion;
     private String imagen;
@@ -17,9 +17,9 @@ public class Idea {
 			String categoria, int calificacion, String imagen) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		this.fechaLimite = fechaLimite;
-		this.montoLimite = montoLimite;
-		this.montoRecolectado = montoRecolectado;
+		this.fechalimite = fechaLimite;
+		this.montolimite = montoLimite;
+		this.montorecolectado = montoRecolectado;
 		this.categoria = categoria;
 		this.calificacion = calificacion;
 		this.imagen = imagen;
@@ -39,22 +39,22 @@ public class Idea {
 		this.descripcion = descripcion;
 	}
 	public Date getFechaLimite() {
-		return fechaLimite;
+		return fechalimite;
 	}
 	public void setFechaLimite(Date fechaLimite) {
-		this.fechaLimite = fechaLimite;
+		this.fechalimite = fechaLimite;
 	}
 	public int getMontoLimite() {
-		return montoLimite;
+		return montolimite;
 	}
 	public void setMontoLimite(int montoLimite) {
-		this.montoLimite = montoLimite;
+		this.montolimite = montoLimite;
 	}
 	public int getMontoRecolectado() {
-		return montoRecolectado;
+		return montorecolectado;
 	}
 	public void setMontoRecolectado(int montoRecolectado) {
-		this.montoRecolectado = montoRecolectado;
+		this.montorecolectado = montoRecolectado;
 	}
 	public String getCategoria() {
 		return categoria;
