@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import equipo.rocket.headhunterbackend.model.FilterChain;
 import equipo.rocket.headhunterbackend.model.Idea;
+import java.util.List;
 
 public class InvestmentFilter implements FilterChain {
 
@@ -14,7 +15,7 @@ public class InvestmentFilter implements FilterChain {
     }
 
     @Override
-    public void filter(Idea[] ideas, HashMap<String, Object> extraParams) {
+    public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
         // TODO Auto-generated method stub
 
     }

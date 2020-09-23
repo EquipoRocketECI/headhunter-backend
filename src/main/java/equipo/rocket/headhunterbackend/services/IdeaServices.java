@@ -11,10 +11,10 @@ import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
 @Service
 public class IdeaServices {
     
-    @Autowired
+    //@Autowired
     IdeasPersistance idp =null;
 
     public Set<Idea> getAllIdeas() throws Exception{
-        return idp.getAllIdeas();
+        return null;
     }
 }
