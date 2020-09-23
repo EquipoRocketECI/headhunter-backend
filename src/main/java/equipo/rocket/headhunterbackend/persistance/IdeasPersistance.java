@@ -7,5 +7,7 @@ import equipo.rocket.headhunterbackend.model.Idea;
 public interface IdeasPersistance {
 
     public Set<Idea> getAllIdeas();
+    
+    public Idea postIdea(Idea idea);
 
 }
