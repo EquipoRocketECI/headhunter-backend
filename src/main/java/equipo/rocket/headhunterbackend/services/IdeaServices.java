@@ -1,7 +1,6 @@
 package equipo.rocket.headhunterbackend.services;
 
-import java.util.Set;
-
+import java.util.List;
 
 
 import equipo.rocket.headhunterbackend.model.Idea;
@@ -9,7 +8,7 @@ import equipo.rocket.headhunterbackend.model.Idea;
 
 
 public interface IdeaServices {
-    public Set<Idea> getAllIdeas() throws Exception;
+    public List<Idea> getAllIdeas() throws Exception;
     
     public Idea addIdea(Idea idea);
     

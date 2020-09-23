@@ -6,7 +6,8 @@
 package equipo.rocket.headhunterbackend.services.impl;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import java.util.Set;
+
+import java.util.List;
 import equipo.rocket.headhunterbackend.services.*;
 import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class IdeaServicesImpl implements IdeaServices{
     IdeasPersistance idp =null;
     
     @Override
-    public Set<Idea> getAllIdeas() throws Exception{
+    public List<Idea> getAllIdeas() throws Exception{
         return idp.getAllIdeas();
     }
     

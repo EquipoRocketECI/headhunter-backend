@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Idea {
 
+    private int id;
     private String nombre;
     private String descripcion;
     private Date fechalimite;
@@ -73,6 +74,16 @@ public class Idea {
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
