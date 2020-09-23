@@ -1,9 +1,16 @@
 package equipo.rocket.headhunterbackend.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public class Idea {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
     private String nombre;
     private String descripcion;
@@ -13,7 +20,11 @@ public class Idea {
     private String categoria;
     private int calificacion;
     private String imagen;
+
     
+    public Idea(){
+
+    }
 	public Idea(String nombre, String descripcion, Date fechaLimite, int montoLimite, int montoRecolectado,
 			String categoria, int calificacion, String imagen) {
 		this.nombre = nombre;
@@ -74,9 +85,8 @@ public class Idea {
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
-
-
+    }
+    
 	public int getId() {
 		return id;
 	}

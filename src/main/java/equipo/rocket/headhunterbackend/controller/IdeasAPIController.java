@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 @RestController
-@RequestMapping(value = "/idea")
+@RequestMapping(value = "/ideas")
 public class IdeasAPIController {
 
     @Autowired
-    @Qualifier("ideaServices")
     IdeaServices is;
 
     @RequestMapping(method = RequestMethod.GET)

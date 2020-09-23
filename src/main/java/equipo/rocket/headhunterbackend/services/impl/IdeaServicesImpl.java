@@ -11,12 +11,13 @@ import java.util.List;
 import equipo.rocket.headhunterbackend.services.*;
 import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 /**
  *
  * @author EquipoRocketEci
  */
-@Service("ideaServices")
+@Service("is")
 public class IdeaServicesImpl implements IdeaServices{
     
     @Autowired
