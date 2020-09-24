@@ -34,9 +34,7 @@ public class IdeasPersistanceStub implements IdeasPersistance {
 
     @Override
     public List<Idea> getAllIdeas() {
-        System.out.println(ideas.toString() + "ideas!!!!!!!!!");
         return ideas;
-
     }
 
     @Override

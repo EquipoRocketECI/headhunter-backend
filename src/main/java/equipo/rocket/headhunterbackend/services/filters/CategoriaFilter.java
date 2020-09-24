@@ -19,7 +19,7 @@ public class CategoriaFilter implements FilterChain {
     public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
         if(extraParams.get("Categoria")!=null){//revisar que el tipo del parametro si concuerde para usarlo abajo
             for (Idea idea : ideas) {
-                if(idea.getCategoria().equals(extraParams.get("Categoria"))){
+                if(!idea.getCategoria().equals(extraParams.get("Categoria"))){
                     ideas.remove(idea);
                 }
             }
