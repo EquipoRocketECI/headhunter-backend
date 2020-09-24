@@ -2,10 +2,10 @@ package equipo.rocket.headhunterbackend.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import javax.persistence.Column;
 import javax.persistence.Table;
 
 @Entity
@@ -69,8 +69,19 @@ public class Idea implements Serializable{
 	@Column(name="propietario")
 	private String propietario;
     
-	public Idea() {
-		
+    public Idea(){
+
+    }
+	public Idea(String nombre, String descripcion, Date fechaLimite, int montoLimite, int montoRecolectado,
+			String categoria, int calificacion, String imagen) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.fechaLimite = fechaLimite;
+		this.montoLimite = montoLimite;
+		this.montoRecolectado = montoRecolectado;
+		this.categoria = categoria;
+		this.calificacion = calificacion;
+		this.imagen = imagen;
 	}
 
         
@@ -121,6 +132,15 @@ public class Idea implements Serializable{
 	}
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
+    }
+    
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
@@ -202,16 +222,5 @@ public class Idea implements Serializable{
 	public void setPropietario(String propietario) {
 		this.propietario = propietario;
 	}
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 
 }

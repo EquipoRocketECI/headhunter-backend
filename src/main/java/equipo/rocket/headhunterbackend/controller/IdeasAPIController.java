@@ -1,5 +1,6 @@
 package equipo.rocket.headhunterbackend.controller;
 
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 @RestController
-@RequestMapping(value = "/idea")
+@RequestMapping(value = "/ideas")
 public class IdeasAPIController {
 
     @Autowired
-    @Qualifier("ideaServices")
     IdeaServices is;
 
     @RequestMapping(method = RequestMethod.GET)
@@ -34,6 +34,15 @@ public class IdeasAPIController {
         }
     }
 
+    @RequestMapping(path = "/filtered",method = RequestMethod.POST)
+    public ResponseEntity<?> filter(@RequestBody HashMap<String,Object> extraParams){
+        try {//ver si se puede mapear directamente a hashmap desde json
+            return new ResponseEntity<>(is.filter(extraParams),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+
+    }
 
     @RequestMapping(method = RequestMethod.POST)	
     public ResponseEntity<?> postIdeas(@RequestBody Idea idea){
