@@ -40,7 +40,7 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> filter(HashMap<String, Object> extraParams) {
-        List<Idea> ideas = idp.getAllIdeas();
+        List<Idea> ideas = new ArrayList<Idea>(idp.getAllIdeas());
         FilterChain categoriaFilter = new CategoriaFilter();
         categoriaFilter.filter(ideas, extraParams);
         return ideas;
