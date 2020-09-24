@@ -10,4 +10,4 @@ public interface UsuarioRepositoryCustom {
 	
 	@Transactional
     public List<Usuario> getNombreCompleto(String correo);
-	}
+}

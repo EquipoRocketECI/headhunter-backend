@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import equipo.rocket.headhunterbackend.services.IdeaServices;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import equipo.rocket.headhunterbackend.model.Idea;
 
@@ -37,10 +38,23 @@ public class IdeasAPIController {
     @RequestMapping(method = RequestMethod.POST)	
     public ResponseEntity<?> postIdeas(@RequestBody Idea idea){
         try {
-            return new ResponseEntity<>(is.addIdea(idea),HttpStatus.CREATED);
+        	is.addIdea(idea);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
-            return new ResponseEntity<>("Error al intentar crear el nuevo tiquete",HttpStatus.FORBIDDEN);            
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
+        }
+    }
+    
+    @RequestMapping(path = "/{idea}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUsuario(@PathVariable(name = "idea") int idIdea) {
+        try {
+ 
+            Idea idea = is.getIdeaByID(idIdea);
+            return new ResponseEntity<>(idea, HttpStatus.ACCEPTED);
+
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
 

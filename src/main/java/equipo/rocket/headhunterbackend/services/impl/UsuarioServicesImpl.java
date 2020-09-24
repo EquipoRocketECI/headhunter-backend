@@ -22,7 +22,7 @@ import equipo.rocket.headhunterbackend.persistance.HeadHunterPersistanceExceptio
  *
  * @author EquipoRocketEci
  */
-@Service("usuarioServices")
+@Service("UsuarioServices")
 public class UsuarioServicesImpl implements UsuarioServices{
 
 @Autowired

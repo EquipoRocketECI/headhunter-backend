@@ -6,9 +6,13 @@
 package equipo.rocket.headhunterbackend.services.impl;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import java.util.Set;
+
+import java.util.List;
+
 import equipo.rocket.headhunterbackend.services.*;
-import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
+import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.IdeasRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -19,16 +23,28 @@ import org.springframework.stereotype.Service;
 public class IdeaServicesImpl implements IdeaServices{
     
     @Autowired
-    IdeasPersistance idp =null;
+    IdeasRepository idp;
     
     @Override
-    public Set<Idea> getAllIdeas() throws Exception{
+    public List<Idea> getAllIdeas() throws Exception{
         return idp.getAllIdeas();
     }
     
     @Override
-     public Idea addIdea(Idea idea){
-         return idp.postIdea(idea);
+     public void addIdea(Idea idea){
+        idp.postIdea(idea);
      }
+
+	@Override
+	public Idea getIdeaByID(int idIdea)  throws  HeadHunterNotFoundException{
+		try{
+            Idea idea = idp.findById(idIdea).get();
+            return idea;
+        }
+        catch(java.util.NoSuchElementException e){
+           throw new HeadHunterNotFoundException("No existe la idea");
+        } 
+	
+	}
 
 }
