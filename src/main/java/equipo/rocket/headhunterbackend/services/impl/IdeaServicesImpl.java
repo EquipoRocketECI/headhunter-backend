@@ -17,7 +17,6 @@ import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
 import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -42,7 +41,7 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> filter(HashMap<String, Object> extraParams) {
-        List<Idea> ideas = new ArrayList<Idea>(idp.getAllIdeas());
+        List<Idea> ideas = new ArrayList<Idea>(ir.getAllIdeas());
         FilterChain categoriaFilter = new CategoriaFilter();
         categoriaFilter.filter(ideas, extraParams);
         return ideas;
