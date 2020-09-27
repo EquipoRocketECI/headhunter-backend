@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance;
+package equipo.rocket.headhunterbackend.persistance.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

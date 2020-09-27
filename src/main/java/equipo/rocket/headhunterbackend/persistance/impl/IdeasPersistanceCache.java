@@ -12,17 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import equipo.rocket.headhunterbackend.model.Idea;
 import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
-import equipo.rocket.headhunterbackend.persistance.repositories.IdeaRepository;
+import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
 
 public class IdeasPersistanceCache implements IdeasPersistance {
 
     private HashMap<Integer,Idea> ideas;
 
     @Autowired
-    private IdeaRepository ideaRepository;
+    private IdeasRepository ideasRepository;
 
     public IdeasPersistanceCache(){
-        Iterator<Idea> iterator = ideaRepository.findAll().iterator();
+        Iterator<Idea> iterator = ideasRepository.findAll().iterator();
 
         while(iterator.hasNext()){
             Idea idea = iterator.next();

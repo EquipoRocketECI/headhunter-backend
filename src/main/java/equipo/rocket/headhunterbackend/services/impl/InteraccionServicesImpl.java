@@ -1,6 +1,7 @@
 package equipo.rocket.headhunterbackend.services.impl;
+
 import equipo.rocket.headhunterbackend.model.Interaccion;
-import equipo.rocket.headhunterbackend.persistance.InteraccionRepository;
+import equipo.rocket.headhunterbackend.persistance.repositories.InteraccionRepository;
 import equipo.rocket.headhunterbackend.services.InteraccionServices;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
