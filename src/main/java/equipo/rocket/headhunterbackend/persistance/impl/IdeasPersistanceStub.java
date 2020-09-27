@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
+import equipo.rocket.headhunterbackend.persistance.custom.IdeasRepositoryCustom;
 
 @Component("idp")
-public class IdeasPersistanceStub implements IdeasPersistance {
+public class IdeasPersistanceStub implements IdeasRepositoryCustom {
     private ArrayList<Idea> ideas;
 
     public IdeasPersistanceStub() {
@@ -45,9 +45,8 @@ public class IdeasPersistanceStub implements IdeasPersistance {
     }
 
     @Override
-    public Idea postIdea(Idea idea) {
+    public void postIdea(Idea idea) {
         // TODO Auto-generated method stub
-        return null;
     }
 
 }

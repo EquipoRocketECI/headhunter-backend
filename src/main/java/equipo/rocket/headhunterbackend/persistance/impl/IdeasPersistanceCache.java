@@ -1,34 +1,43 @@
 package equipo.rocket.headhunterbackend.persistance.impl;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.persistance.IdeasPersistance;
+import equipo.rocket.headhunterbackend.persistance.custom.IdeasRepositoryCustom;
 import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
 
-public class IdeasPersistanceCache implements IdeasPersistance {
+@Component("ir")
+public class IdeasPersistanceCache implements IdeasRepositoryCustom {
 
-    private HashMap<Integer,Idea> ideas;
+    private HashMap<Integer, Idea> ideas;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Autowired
     private IdeasRepository ideasRepository;
 
-    public IdeasPersistanceCache(){
+    public IdeasPersistanceCache() {
+        refreshCache();
+    }
+
+    public void refreshCache() {
         Iterator<Idea> iterator = ideasRepository.findAll().iterator();
 
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             Idea idea = iterator.next();
             ideas.put(idea.getId(), idea);
         }
-
     }
 
     @Override
@@ -37,9 +46,20 @@ public class IdeasPersistanceCache implements IdeasPersistance {
     }
 
     @Override
-    public Idea postIdea(Idea idea) {
-        // TODO Auto-generated method stub
-        return null;
+    public void postIdea(Idea idea) {
+        Query query = entityManager.createNativeQuery(
+                "insert into idea values (NEXTVAL('serialIdea'),?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?,?)", Idea.class);
+
+        query.setParameter(1, idea.getNombre()).setParameter(2, idea.getDescripcion())
+                .setParameter(3, idea.getFechaLimite()).setParameter(4, idea.getMontoLimite())
+                .setParameter(5, idea.getMontoRecolectado()).setParameter(6, idea.getCategoria())
+                .setParameter(7, idea.getCalificacion()).setParameter(8, idea.isAdquisiciontemprana())
+                .setParameter(9, idea.isDescuento()).setParameter(10, idea.isVersionpremium())
+                .setParameter(11, idea.isPequenasdonaciones()).setParameter(12, idea.isGrandesinversiones())
+                .setParameter(13, idea.isExpertospersonal()).setParameter(14, idea.getImagen())
+                .setParameter(15, idea.getPropietario()).executeUpdate();
+
+        refreshCache();
     }
-    
+
 }
