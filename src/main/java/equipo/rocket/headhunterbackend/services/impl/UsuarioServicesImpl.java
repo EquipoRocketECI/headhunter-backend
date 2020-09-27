@@ -13,9 +13,8 @@ import org.springframework.stereotype.Service;
 
 import equipo.rocket.headhunterbackend.model.Usuario;
 import equipo.rocket.headhunterbackend.services.UsuarioServices;
-
-import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
-import equipo.rocket.headhunterbackend.persistance.HeadHunterPersistanceException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterPersistanceException;
 import equipo.rocket.headhunterbackend.persistance.repositories.UsuarioRepository;
 
 /**

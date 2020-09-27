@@ -13,7 +13,7 @@ import java.util.List;
 import equipo.rocket.headhunterbackend.services.*;
 import equipo.rocket.headhunterbackend.services.filters.CategoriaFilter;
 import equipo.rocket.headhunterbackend.services.filters.FilterChain;
-import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
 import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

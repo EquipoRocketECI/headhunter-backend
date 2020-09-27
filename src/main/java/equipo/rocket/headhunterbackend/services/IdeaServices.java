@@ -3,9 +3,8 @@ package equipo.rocket.headhunterbackend.services;
 import java.util.HashMap;
 import java.util.List;
 
-
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
 
 
 
