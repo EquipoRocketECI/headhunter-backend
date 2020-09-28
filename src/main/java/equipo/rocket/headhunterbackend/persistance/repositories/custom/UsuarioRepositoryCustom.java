@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance.custom;
+package equipo.rocket.headhunterbackend.persistance.repositories.custom;
 
 import java.util.Set;
 import javax.transaction.Transactional;

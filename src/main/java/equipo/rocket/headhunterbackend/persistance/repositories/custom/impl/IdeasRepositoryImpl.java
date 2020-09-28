@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance.impl;
+package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.persistance.custom.IdeasRepositoryCustom;
 import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
+import equipo.rocket.headhunterbackend.persistance.repositories.custom.IdeasRepositoryCustom;
 
 @Component("ir")
-public class IdeasPersistanceCache implements IdeasRepositoryCustom {
+public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
     private HashMap<Integer, Idea> ideas;
 
@@ -27,17 +27,17 @@ public class IdeasPersistanceCache implements IdeasRepositoryCustom {
     @Autowired
     private IdeasRepository ideasRepository;
 
-    public IdeasPersistanceCache() {
+    public IdeasRepositoryImpl() {
         refreshCache();
     }
 
     public void refreshCache() {
-        Iterator<Idea> iterator = ideasRepository.findAll().iterator();
+        /* Iterator<Idea> iterator = ideasRepository.findAll().iterator();
 
         while (iterator.hasNext()) {
             Idea idea = iterator.next();
             ideas.put(idea.getId(), idea);
-        }
+        } */
     }
 
     @Override

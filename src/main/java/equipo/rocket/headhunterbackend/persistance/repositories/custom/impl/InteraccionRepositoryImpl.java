@@ -1,7 +1,7 @@
-package equipo.rocket.headhunterbackend.persistance.impl;
+package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import equipo.rocket.headhunterbackend.model.Interaccion;
-import equipo.rocket.headhunterbackend.persistance.custom.InteraccionRepositoryCustom;
+import equipo.rocket.headhunterbackend.persistance.repositories.custom.InteraccionRepositoryCustom;
 
 import java.util.List;
 

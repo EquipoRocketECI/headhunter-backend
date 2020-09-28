@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance.impl;
+package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.persistance.custom.IdeasRepositoryCustom;
+import equipo.rocket.headhunterbackend.persistance.repositories.custom.IdeasRepositoryCustom;
 
 @Component("idp")
 public class IdeasPersistanceStub implements IdeasRepositoryCustom {
