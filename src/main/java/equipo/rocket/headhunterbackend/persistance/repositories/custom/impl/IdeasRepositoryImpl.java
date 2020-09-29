@@ -1,6 +1,7 @@
 package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,30 +20,39 @@ import equipo.rocket.headhunterbackend.persistance.repositories.custom.IdeasRepo
 @Component("ir")
 public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
-    private HashMap<Integer, Idea> ideas;
+    private ArrayList<Idea> ideasStub;
 
     @PersistenceContext
     EntityManager entityManager;
 
-    @Autowired
-    private IdeasRepository ideasRepository;
-
     public IdeasRepositoryImpl() {
-        refreshCache();
-    }
+        ideasStub = new ArrayList<Idea>();
+        Idea idea1 = new Idea("HeadHunter",
+                "HeadHunter es una plataforma para emprendedores que buscan ayuda financiera y logística para llevar a cabo sus ideas a la realidad",
+                new Date(), 10000, 1000, "Educacion", 5, "imagen");
+        Idea idea2 = new Idea("MyDoctor", "Sistema para pedir consejos de médicos", new Date(), 1000000, 100000,
+                "Salud", 3, "imagen");
+        Idea idea3 = new Idea("BlueApron",
+                "Our food system—the way in which food is grown and distributed—is complicated, and making good choices for your family can be difficult. We are changing that: By partnering with farmers to raise the highest-quality ingredients, by creating a distribution system that delivers ingredients at a better value and by investing in the things that matter most—our environment and our communities",
+                new Date(), 2500000, 100000, "Gastronomia", 5, "imagen");
+        Idea idea4 = new Idea("PokemonGo", "juego de AR", new Date(), 50000, 10000, "Cultura", 5, "imagen");
+        Idea idea5 = new Idea("MyDoctor2", "Sistema para pedir consejos de médicos", new Date(), 1000000, 100000,
+                "Salud", 5, "imagen");
+        Idea idea6 = new Idea("HeadHunter",
+                "HeadHunter es una plataforma para emprendedores que buscan ayuda financiera y logística para llevar a cabo sus ideas a la realidad",
+                new Date(), 10000, 1000, "Educacion", 1, "imagen");
 
-    public void refreshCache() {
-        /* Iterator<Idea> iterator = ideasRepository.findAll().iterator();
-
-        while (iterator.hasNext()) {
-            Idea idea = iterator.next();
-            ideas.put(idea.getId(), idea);
-        } */
+        ideasStub.add(idea1);
+        ideasStub.add(idea2);
+        ideasStub.add(idea3);
+        ideasStub.add(idea4);
+        ideasStub.add(idea5);
+        ideasStub.add(idea6);
     }
 
     @Override
     public List<Idea> getAllIdeas() {
-        return new ArrayList<>(ideas.values());
+        return ideasStub;
     }
 
     @Override
@@ -58,8 +68,6 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
                 .setParameter(11, idea.isPequenasdonaciones()).setParameter(12, idea.isGrandesinversiones())
                 .setParameter(13, idea.isExpertospersonal()).setParameter(14, idea.getImagen())
                 .setParameter(15, idea.getPropietario()).executeUpdate();
-
-        refreshCache();
     }
 
 }

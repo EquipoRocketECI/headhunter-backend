@@ -18,12 +18,12 @@ public class CategoriaFilter implements FilterChain {
 
     @Override
     public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
-        if(extraParams.get("Categoria")!=null){//revisar que el tipo del parametro si concuerde para usarlo abajo
+        if(extraParams.get("categoria")!=null){//revisar que el tipo del parametro si concuerde para usarlo abajo
             
             Iterator<Idea> it = ideas.iterator();
             while(it.hasNext()){
                 Idea idea = it.next();
-                if(!idea.getCategoria().equals(extraParams.get("Categoria"))){
+                if(!idea.getCategoria().equals(extraParams.get("categoria"))){
                     it.remove();
                 }
             }
