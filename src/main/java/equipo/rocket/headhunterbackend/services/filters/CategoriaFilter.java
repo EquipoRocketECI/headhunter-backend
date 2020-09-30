@@ -18,7 +18,7 @@ public class CategoriaFilter implements FilterChain {
 
     @Override
     public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
-        if(extraParams.get("categoria")!=null){//revisar que el tipo del parametro si concuerde para usarlo abajo
+        if(extraParams.containsKey("categoria")){
             
             Iterator<Idea> it = ideas.iterator();
             while(it.hasNext()){
