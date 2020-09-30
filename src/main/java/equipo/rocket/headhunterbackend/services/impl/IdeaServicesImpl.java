@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import equipo.rocket.headhunterbackend.services.*;
+import equipo.rocket.headhunterbackend.services.filters.CalificacionFilter;
 import equipo.rocket.headhunterbackend.services.filters.CategoriaFilter;
 import equipo.rocket.headhunterbackend.services.filters.FilterChain;
 import equipo.rocket.headhunterbackend.services.filters.InvestmentFilter;
@@ -44,7 +45,9 @@ public class IdeaServicesImpl implements IdeaServices {
     public List<Idea> filter(HashMap<String, Object> extraParams) {
         List<Idea> ideas = new ArrayList<Idea>(ir.getAllIdeas());
         FilterChain filterChain = new CategoriaFilter();
-        filterChain.setNextFilter(new InvestmentFilter());
+        FilterChain investmentFilter = new InvestmentFilter();
+        filterChain.setNextFilter(investmentFilter);
+        investmentFilter.setNextFilter(new CalificacionFilter());
         filterChain.filter(ideas, extraParams);
         return ideas;
     }
