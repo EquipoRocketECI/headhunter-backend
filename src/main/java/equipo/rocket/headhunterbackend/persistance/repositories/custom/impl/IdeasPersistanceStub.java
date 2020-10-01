@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 import equipo.rocket.headhunterbackend.persistance.repositories.custom.IdeasRepositoryCustom;
 
@@ -48,5 +49,29 @@ public class IdeasPersistanceStub implements IdeasRepositoryCustom {
     public void postIdea(Idea idea) {
         // TODO Auto-generated method stub
     }
+
+	@Override
+	public void putIdea(Idea idea) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addMonto(int idIdea, int newMontoRecolectado) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postExpert(ExpertosRequeridos exp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

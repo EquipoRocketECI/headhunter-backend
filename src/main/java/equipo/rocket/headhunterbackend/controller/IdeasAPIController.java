@@ -1,6 +1,7 @@
 package equipo.rocket.headhunterbackend.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,6 +16,8 @@ import equipo.rocket.headhunterbackend.services.IdeaServices;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 @RestController
@@ -56,11 +59,59 @@ public class IdeasAPIController {
     }
     
     @RequestMapping(path = "/{idea}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUsuario(@PathVariable(name = "idea") int idIdea) {
+    public ResponseEntity<?> getIdeaByID(@PathVariable(name = "idea") int idIdea) {
         try {
  
             Idea idea = is.getIdeaByID(idIdea);
             return new ResponseEntity<>(idea, HttpStatus.ACCEPTED);
+
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+    
+    @RequestMapping(path = "/{id}",method = RequestMethod.PUT)	
+    public ResponseEntity<?> PutIdea(@PathVariable ("id") int id,@RequestBody Idea idea ){
+        try {          
+            is.putIdea(idea);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
+    }
+    
+    @RequestMapping(path = "/{id}/donacion/{donacion}",method = RequestMethod.PUT)	
+    public ResponseEntity<?> donar(@PathVariable ("id") int id,@PathVariable ("donacion") int donacion ){
+        
+        try {
+            is.addMonto(id, donacion);
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
+    
+    }
+    
+    
+    @RequestMapping(path = "/expertos", method = RequestMethod.POST)	
+    public ResponseEntity<?> postExpertos(@RequestBody ExpertosRequeridos expReq){
+        try {
+        	is.postExpert(expReq);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            
+        }
+    }
+    
+    
+    @RequestMapping(path = "/{idea}/expertos", method = RequestMethod.GET)
+    public ResponseEntity<?> getExpertosByIdea(@PathVariable(name = "idea") int idIdea) {
+        try {
+        	List<ExpertosRequeridos> expReqs = is.getExpertsByIdea(idIdea);
+            return new ResponseEntity<>(expReqs, HttpStatus.ACCEPTED);
 
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
