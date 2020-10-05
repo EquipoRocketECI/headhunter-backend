@@ -33,7 +33,7 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> getAllIdeas() throws Exception {
-        return ir.getAllIdeas();
+        return ir.findAll();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> filter(HashMap<String, Object> extraParams) {
-        List<Idea> ideas = new ArrayList<Idea>(ir.getAllIdeas());
+        List<Idea> ideas = new ArrayList<Idea>(ir.findAll());
         FilterChain filterChain = new CategoriaFilter();
         FilterChain investmentFilter = new InvestmentFilter();
         filterChain.setNextFilter(investmentFilter);
