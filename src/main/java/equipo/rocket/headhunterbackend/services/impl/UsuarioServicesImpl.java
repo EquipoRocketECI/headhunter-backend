@@ -64,7 +64,7 @@ public class UsuarioServicesImpl implements UsuarioServices{
 
 	@Override
 	public String getNombreCompleto(String correo) {
-		return userRepo.getNombreCompleto(correo).get(0).getNombreCompleto();
+		return userRepo.getNombreCompleto(correo).get(0).getNombrecompleto();
 	}
     
 }

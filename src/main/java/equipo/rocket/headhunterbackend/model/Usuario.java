@@ -47,11 +47,11 @@ public class Usuario implements Serializable{
 	}
 	
 
-	public String getNombreCompleto() {
+	public String getNombrecompleto() {
 		return nombrecompleto;
 	}
 
-	public void setNombreCompleto(String nombrecompleto) {
+	public void setNombrecompleto(String nombrecompleto) {
 		this.nombrecompleto  = nombrecompleto;
 	}
 	
