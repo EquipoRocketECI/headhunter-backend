@@ -1,8 +1,7 @@
-package equipo.rocket.headhunterbackend.model.filters;
+package equipo.rocket.headhunterbackend.services.filters;
 
 import java.util.HashMap;
 
-import equipo.rocket.headhunterbackend.model.FilterChain;
 import equipo.rocket.headhunterbackend.model.Idea;
 import java.util.List;
 

@@ -9,6 +9,8 @@ import java.util.List;
 
 import equipo.rocket.headhunterbackend.model.Usuario;
 import equipo.rocket.headhunterbackend.persistance.*;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterPersistanceException;
 /**
  *
  * @author EquipoRocketEci

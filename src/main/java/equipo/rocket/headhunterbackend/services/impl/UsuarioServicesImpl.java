@@ -4,19 +4,18 @@
  * and open the template in the editor.
  */
 package equipo.rocket.headhunterbackend.services.impl;
-import java.util.List;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import equipo.rocket.headhunterbackend.model.Usuario;
-import equipo.rocket.headhunterbackend.persistance.UsuarioRepository;
 import equipo.rocket.headhunterbackend.services.UsuarioServices;
-
-import equipo.rocket.headhunterbackend.persistance.HeadHunterNotFoundException;
-import equipo.rocket.headhunterbackend.persistance.HeadHunterPersistanceException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
+import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterPersistanceException;
+import equipo.rocket.headhunterbackend.persistance.repositories.UsuarioRepository;
 
 /**
  *

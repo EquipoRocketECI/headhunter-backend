@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance;
+package equipo.rocket.headhunterbackend.persistance.exceptions;
 
 import java.util.Set;
 

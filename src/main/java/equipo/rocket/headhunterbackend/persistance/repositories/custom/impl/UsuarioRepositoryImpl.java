@@ -1,4 +1,4 @@
-package equipo.rocket.headhunterbackend.persistance.impl;
+package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import java.util.List;
 
@@ -6,9 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-
 import equipo.rocket.headhunterbackend.model.Usuario;
-import equipo.rocket.headhunterbackend.persistance.custom.UsuarioRepositoryCustom;
+import equipo.rocket.headhunterbackend.persistance.repositories.custom.UsuarioRepositoryCustom;
 
 public class UsuarioRepositoryImpl implements UsuarioRepositoryCustom {
 	
