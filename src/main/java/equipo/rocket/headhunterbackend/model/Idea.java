@@ -68,6 +68,9 @@ public class Idea implements Serializable{
 	
 	@Column(name="propietario")
 	private String propietario;
+	
+	@Column(name="fase")
+	private String fase;
     
     public Idea(){
 
@@ -221,6 +224,12 @@ public class Idea implements Serializable{
 
 	public void setPropietario(String propietario) {
 		this.propietario = propietario;
+	}
+	public String getFase() {
+		return fase;
+	}
+	public void setFase(String fase) {
+		this.fase = fase;
 	}
 
 }

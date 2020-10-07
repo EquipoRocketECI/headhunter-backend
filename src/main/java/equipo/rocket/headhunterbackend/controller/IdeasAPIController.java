@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import equipo.rocket.headhunterbackend.services.IdeaServices;
-import org.springframework.beans.factory.annotation.Qualifier;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -21,6 +22,7 @@ import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping(value = "/ideas")
 public class IdeasAPIController {
 
