@@ -22,7 +22,7 @@ import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 @RequestMapping(value = "/ideas")
 public class IdeasAPIController {
 
