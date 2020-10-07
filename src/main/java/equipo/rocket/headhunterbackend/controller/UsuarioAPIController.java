@@ -20,11 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import equipo.rocket.headhunterbackend.model.Usuario;
 import equipo.rocket.headhunterbackend.services.*;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 /**
  *
  * @author EquipoRocketEci
  */
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @RequestMapping(value = "/usuario")
 public class UsuarioAPIController {
  @Autowired
