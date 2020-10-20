@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import equipo.rocket.headhunterbackend.services.IdeaServices;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import equipo.rocket.headhunterbackend.model.Idea;
@@ -34,9 +34,10 @@ public class IdeasAPIController {
         }
     }
 
+    @CrossOrigin
     @RequestMapping(path = "/filtered",method = RequestMethod.POST)
     public ResponseEntity<?> filter(@RequestBody HashMap<String,Object> extraParams){
-        try {//ver si se puede mapear directamente a hashmap desde json
+        try {
             return new ResponseEntity<>(is.filter(extraParams),HttpStatus.ACCEPTED);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
