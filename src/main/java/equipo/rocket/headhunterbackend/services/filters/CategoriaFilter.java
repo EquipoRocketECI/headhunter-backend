@@ -20,22 +20,12 @@ public class CategoriaFilter implements FilterChain {
 
     @Override
     public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
-        // cambiar para que reciba varias categorias -> categoria:[<categorias
-        // seleccionadas>]
         if (extraParams.containsKey("selectedCategories")) {
-            ArrayList<String> categories = new ArrayList<String>();
-
-            LinkedHashMap<String, Boolean> selectedCategories = ((LinkedHashMap<String, Boolean>) extraParams
-                    .get("selectedCategories"));
-            selectedCategories.forEach((k, v) -> {
-                if (v) {
-                    categories.add(k);
-                }
-            });
+            ArrayList<String> categories = getSelectedCategories(extraParams);
             Iterator<Idea> it = ideas.iterator();
                     while (it.hasNext()) {
                         Idea idea = it.next();
-                        if (!categories.contains(idea.getCategoria())) {//compare not in set of true values
+                        if (!categories.contains(idea.getCategoria())) {
                             it.remove();
                         }
                     }
@@ -45,6 +35,19 @@ public class CategoriaFilter implements FilterChain {
             nextFilter.filter(ideas, extraParams);
         }
 
+    }
+
+    private ArrayList<String> getSelectedCategories(HashMap<String, Object> extraParams) {
+        ArrayList<String> selectedCategories = new ArrayList<String>();
+
+        LinkedHashMap<String, Boolean> allCategories = ((LinkedHashMap<String, Boolean>) extraParams
+                .get("selectedCategories"));
+        allCategories.forEach((k, v) -> {
+            if (v) {
+                selectedCategories.add(k);
+            }
+        });
+        return selectedCategories;
     }
 
 }
