@@ -26,5 +26,7 @@ public interface IdeaServices {
 	public void postExpert(ExpertosRequeridos exp);
 	
 	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) throws  HeadHunterNotFoundException;
+        
+        public List<Idea> getDestacadas();
     
 }

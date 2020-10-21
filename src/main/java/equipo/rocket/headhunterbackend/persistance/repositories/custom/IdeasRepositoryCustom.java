@@ -25,5 +25,8 @@ public interface IdeasRepositoryCustom {
 	
 	@Transactional
 	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea);
+        
+        @Transactional
+        public List<Idea> getDestacadas();
 	
 }

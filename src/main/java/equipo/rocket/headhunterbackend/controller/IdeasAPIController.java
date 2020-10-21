@@ -119,5 +119,14 @@ public class IdeasAPIController {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+    
+    @RequestMapping(path = "/getDestacadas", method = RequestMethod.GET)
+    public ResponseEntity<?> getDestacadas() {
+        try {
+            return new ResponseEntity<>(is.getDestacadas(), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

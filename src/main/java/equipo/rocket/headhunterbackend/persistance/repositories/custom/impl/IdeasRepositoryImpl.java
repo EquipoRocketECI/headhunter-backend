@@ -123,6 +123,13 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 		
 	}
     
-    
+    @Override
+    public List<Idea> getDestacadas(){
+        
+        Query query = entityManager.createNativeQuery("SELECT idea.id,idea.nombre,idea.descripcion,idea.fechalimite,idea.montolimite, idea.montorecolectado, idea.categoria, idea.calificacion,idea.adquisiciontemprana , idea.descuento , idea.versionpremium , idea.pequenasdonaciones , idea.grandesinversiones , idea.expertospersonal , idea.fechapublicacion , idea.imagen , idea.propietario ,idea.fase, count(idea.id) as conteo FROM idea LEFT JOIN interaccion ON idea.id = interaccion.idea group by idea.id order by conteo desc limit 5",Idea.class);
+        
+        return query.getResultList();
+
+    }
 
 }

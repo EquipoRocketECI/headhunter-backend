@@ -74,4 +74,9 @@ public class IdeasPersistanceStub implements IdeasRepositoryCustom {
 		return null;
 	}
 
+    @Override
+    public List<Idea> getDestacadas() {
+        return null;
+    }
+
 }

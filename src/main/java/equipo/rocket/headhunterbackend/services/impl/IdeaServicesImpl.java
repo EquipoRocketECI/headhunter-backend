@@ -86,6 +86,9 @@ public class IdeaServicesImpl implements IdeaServices {
 		return ir.getExpertsByIdea(idIdea);
 	}
 	
-	
+        @Override
+	public List<Idea> getDestacadas(){
+            return ir.getDestacadas();
+        }
 
 }
