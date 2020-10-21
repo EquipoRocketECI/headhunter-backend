@@ -46,8 +46,8 @@ public class IdeasPersistanceStub implements IdeasRepositoryCustom {
     }
 
     @Override
-    public void postIdea(Idea idea) {
-        // TODO Auto-generated method stub
+    public Idea postIdea(Idea idea) {
+        return null;
     }
 
 	@Override
