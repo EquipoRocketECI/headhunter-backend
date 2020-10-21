@@ -36,8 +36,8 @@ public class IdeaServicesImpl implements IdeaServices {
     }
 
     @Override
-    public void addIdea(Idea idea) {
-        ir.postIdea(idea);
+    public Idea addIdea(Idea idea) {
+        return ir.postIdea(idea);
     }
 
     @Override

@@ -48,7 +48,7 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
     }
 
     @Override
-    public void postIdea(Idea idea) {
+    public Idea postIdea(Idea idea) {
         Query query = entityManager.createNativeQuery(
                 "insert into idea values (NEXTVAL('serialIdea'),?,?,?,?,?,?,?,?,?,?,?,?,?,now(),?,?)", Idea.class);
 
@@ -62,6 +62,12 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
                 .setParameter(15, idea.getPropietario()).executeUpdate();
 
         refreshCache();
+        
+        Query query2 = entityManager.createNativeQuery("select * from idea where id=(select max(id) from idea)",Idea.class);
+		
+		
+		return (Idea) query2.getResultList().get(0);
+        
     }
 
 	@Override

@@ -15,7 +15,7 @@ public interface IdeaServices {
 
     public List<Idea> filter(HashMap<String,Object> extraParams);
     
-    public void addIdea(Idea idea);
+    public Idea addIdea(Idea idea);
 
 	public Idea getIdeaByID(int idIdea) throws  HeadHunterNotFoundException;
 	

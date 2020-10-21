@@ -52,8 +52,8 @@ public class IdeasAPIController {
     @RequestMapping(method = RequestMethod.POST)	
     public ResponseEntity<?> postIdeas(@RequestBody Idea idea){
         try {
-        	is.addIdea(idea);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+        	
+            return new ResponseEntity<>(is.addIdea(idea),HttpStatus.CREATED);
         } catch (Exception ex) {
             Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);            

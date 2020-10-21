@@ -12,7 +12,7 @@ public interface IdeasRepositoryCustom {
 	public List<Idea> getAllIdeas();
     
 	@Transactional
-    public void postIdea(Idea idea);
+    public Idea postIdea(Idea idea);
 	
 	@Transactional
 	public void putIdea(Idea idea);
