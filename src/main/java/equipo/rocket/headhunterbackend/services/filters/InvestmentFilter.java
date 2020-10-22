@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 
 import equipo.rocket.headhunterbackend.model.Idea;
-import equipo.rocket.headhunterbackend.model.InvestmentRange;
 
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class InvestmentFilter implements FilterChain {
     public void filter(List<Idea> ideas, HashMap<String, Object> extraParams) {
 
         if(extraParams.containsKey("investmentRange")){
-            int lowBound=((LinkedHashMap<String,Integer>) extraParams.get("investmentRange")).get("lowBound");
-            int highBound=((LinkedHashMap<String,Integer>) extraParams.get("investmentRange")).get("highBound");//it would be great if I could map to InvestmentRange directly from spring, could not find an easy way.
+            Double lowBound=((LinkedHashMap<String,Number>) extraParams.get("investmentRange")).get("lowBound").doubleValue();
+            Double highBound=((LinkedHashMap<String,Number>) extraParams.get("investmentRange")).get("highBound").doubleValue();//it would be great if I could map to InvestmentRange directly from spring, could not find an easy way.
             Iterator<Idea> it = ideas.iterator();
             while(it.hasNext()){
                 Idea idea = it.next();
