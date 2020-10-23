@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import equipo.rocket.headhunterbackend.services.*;
+import equipo.rocket.headhunterbackend.services.filters.CalificacionFilter;
 import equipo.rocket.headhunterbackend.services.filters.CategoriaFilter;
 import equipo.rocket.headhunterbackend.services.filters.FilterChain;
+import equipo.rocket.headhunterbackend.services.filters.InvestmentFilter;
 import equipo.rocket.headhunterbackend.persistance.exceptions.HeadHunterNotFoundException;
 import equipo.rocket.headhunterbackend.persistance.repositories.IdeasRepository;
 
@@ -32,7 +34,7 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> getAllIdeas() throws Exception {
-        return ir.getAllIdeas();
+        return ir.findAll();
     }
 
     @Override
@@ -42,9 +44,12 @@ public class IdeaServicesImpl implements IdeaServices {
 
     @Override
     public List<Idea> filter(HashMap<String, Object> extraParams) {
-        List<Idea> ideas = new ArrayList<Idea>(ir.getAllIdeas());
-        FilterChain categoriaFilter = new CategoriaFilter();
-        categoriaFilter.filter(ideas, extraParams);
+        List<Idea> ideas = new ArrayList<Idea>(ir.findAll());
+        FilterChain filterChain = new CategoriaFilter();
+        FilterChain investmentFilter = new InvestmentFilter();
+        filterChain.setNextFilter(investmentFilter);
+        investmentFilter.setNextFilter(new CalificacionFilter());
+        filterChain.filter(ideas, extraParams);
         return ideas;
     }
 

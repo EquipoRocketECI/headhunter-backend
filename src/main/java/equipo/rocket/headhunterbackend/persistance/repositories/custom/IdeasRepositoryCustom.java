@@ -8,8 +8,6 @@ import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 public interface IdeasRepositoryCustom {
-	
-	public List<Idea> getAllIdeas();
     
 	@Transactional
     public Idea postIdea(Idea idea);

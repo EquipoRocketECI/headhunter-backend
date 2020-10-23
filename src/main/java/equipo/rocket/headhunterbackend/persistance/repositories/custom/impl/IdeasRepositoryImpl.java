@@ -1,6 +1,7 @@
 package equipo.rocket.headhunterbackend.persistance.repositories.custom.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,30 +22,11 @@ import equipo.rocket.headhunterbackend.persistance.repositories.custom.IdeasRepo
 @Component("ir")
 public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
-    private HashMap<Integer, Idea> ideas;
-
     @PersistenceContext
     EntityManager entityManager;
 
-    @Autowired
-    private IdeasRepository ideasRepository;
-
     public IdeasRepositoryImpl() {
-        refreshCache();
-    }
-
-    public void refreshCache() {
-        /* Iterator<Idea> iterator = ideasRepository.findAll().iterator();
-
-        while (iterator.hasNext()) {
-            Idea idea = iterator.next();
-            ideas.put(idea.getId(), idea);
-        } */
-    }
-
-    @Override
-    public List<Idea> getAllIdeas() {
-        return new ArrayList<>(ideas.values());
+        
     }
 
     @Override
@@ -60,8 +42,6 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
                 .setParameter(11, idea.isPequenasdonaciones()).setParameter(12, idea.isGrandesinversiones())
                 .setParameter(13, idea.isExpertospersonal()).setParameter(14, idea.getImagen())
                 .setParameter(15, idea.getPropietario()).executeUpdate();
-
-        refreshCache();
         
         Query query2 = entityManager.createNativeQuery("select * from idea where id=(select max(id) from idea)",Idea.class);
 		
