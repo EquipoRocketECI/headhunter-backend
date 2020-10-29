@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author EquipoRocketEci
  */
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.DELETE})
 @RequestMapping(value = "/interaccion")
 public class InteraccionAPIController {
     
@@ -50,6 +50,16 @@ public class InteraccionAPIController {
     public ResponseEntity<?> getInteraccionByUser(@PathVariable(name="user") String user) {
         try {
             return new ResponseEntity<>(interaccionServices.getInteraccionByUser(user), HttpStatus.ACCEPTED);
+        } catch (Exception ex) {
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+    @RequestMapping(method = RequestMethod.DELETE, path="/{interacionId}")
+    public ResponseEntity<?> deleteInteraccion(@PathVariable(name="interacionId") int interacionId) {
+        try {
+            interaccionServices.deleteInteraccion(interacionId);
+            return new ResponseEntity<>( HttpStatus.OK);
         } catch (Exception ex) {
             return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

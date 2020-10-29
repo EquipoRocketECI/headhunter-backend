@@ -19,4 +19,7 @@ public interface InteraccionRepositoryCustom {
     @Transactional
     public List<Interaccion> getInteraccionByUser(String user);
     
+    @Transactional
+    public void deleteInteraccion(int interacionId);
+    
 }

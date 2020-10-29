@@ -15,4 +15,6 @@ public interface InteraccionServices {
             
     public List<Interaccion> getInteraccionByUser(String user);
     
+    public void deleteInteraccion(int interacionId);
+    
 }
