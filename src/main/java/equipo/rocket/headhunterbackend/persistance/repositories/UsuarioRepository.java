@@ -13,4 +13,6 @@ import equipo.rocket.headhunterbackend.persistance.repositories.custom.UsuarioRe
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String>, UsuarioRepositoryCustom{
 
+	
+
 }
