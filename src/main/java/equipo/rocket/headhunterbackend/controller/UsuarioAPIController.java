@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
  * @author EquipoRocketEci
  */
 @RestController
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT})
 @RequestMapping(value = "/usuario")
 public class UsuarioAPIController {
  @Autowired
@@ -84,8 +84,31 @@ public class UsuarioAPIController {
 
 	    }
 
-		       
-
+		 @RequestMapping(path = "/{correo}/contrasena/{contrasena}",method = RequestMethod.PUT)	
+		    public ResponseEntity<?> putPassword(@PathVariable ("correo") String correo,@PathVariable ("contrasena") String  contrasena){
+		        
+		        try {
+		            user.changePassword(correo, contrasena);
+		            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		        } catch (Exception ex) {
+		            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
+		            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+		        }
+		    
+		    }
+		 
+		 @RequestMapping(path = "/{correo}/nombrecompleto/{nombrecompleto}",method = RequestMethod.PUT)	
+		    public ResponseEntity<?> putNombreCompleto(@PathVariable ("correo") String correo,@PathVariable ("nombrecompleto") String  nombrecompleto){
+		        
+		        try {
+		            user.changeNombreCompleto(correo, nombrecompleto);
+		            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+		        } catch (Exception ex) {
+		            Logger.getLogger(IdeasAPIController.class.getName()).log(Level.SEVERE, null, ex);
+		            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+		        }
+		    
+		    }
 	    }
 	        
     

@@ -65,5 +65,23 @@ public class UsuarioServicesImpl implements UsuarioServices{
 	public String getNombreCompleto(String correo) {
 		return userRepo.getNombreCompleto(correo).get(0).getNombrecompleto();
 	}
+
+	@Override
+	public void changePassword(String correo, String contrasena) throws HeadHunterNotFoundException {
+		// TODO Auto-generated method stub
+		Usuario usuario = getUsuario(correo);
+		String nuevaContrasena = contrasena;
+		userRepo.changePassword(correo, nuevaContrasena);
+		
+	}
+
+	@Override
+	public void changeNombreCompleto(String correo, String nombrecompleto) throws HeadHunterNotFoundException {
+		// TODO Auto-generated method stub
+		Usuario usuario = getUsuario(correo);
+		String nuevoNombreCompleto = nombrecompleto;
+		userRepo.changeNombreCompleto(correo, nuevoNombreCompleto);
+		
+	}
     
 }

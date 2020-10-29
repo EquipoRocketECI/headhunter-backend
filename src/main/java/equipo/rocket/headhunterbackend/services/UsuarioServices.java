@@ -25,5 +25,9 @@ public List<Usuario> getAllUsers();
 
 
     public String getNombreCompleto(String correo);
+
+	public void changePassword(String correo, String contrasena) throws HeadHunterNotFoundException;
+
+	public void changeNombreCompleto(String correo, String nombrecompleto) throws HeadHunterNotFoundException;
     
 }
