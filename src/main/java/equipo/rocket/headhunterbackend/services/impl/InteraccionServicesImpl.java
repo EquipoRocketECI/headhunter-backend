@@ -32,4 +32,9 @@ public class InteraccionServicesImpl implements InteraccionServices{
         return interaccionRepository.getInteraccionByUser(user);
     }
     
+    @Override
+    public void deleteInteraccion(int interacionId){
+        interaccionRepository.deleteInteraccion(interacionId);
+    }
+    
 }

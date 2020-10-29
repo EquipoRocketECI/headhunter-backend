@@ -53,4 +53,15 @@ public class InteraccionRepositoryImpl implements InteraccionRepositoryCustom{
         
     }
     
+    @Override
+    public void deleteInteraccion(int interacionId){
+        
+        Query query = entityManager.createNativeQuery("delete from interaccion where id=?",Interaccion.class);
+        
+        query.setParameter(1, interacionId );
+        
+        query.executeUpdate();
+        
+    }
+    
 }
