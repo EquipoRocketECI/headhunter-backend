@@ -45,7 +45,7 @@ public class InteraccionRepositoryImpl implements InteraccionRepositoryCustom{
     @Override
     public List<Interaccion> getInteraccionByUser(String user){
         
-        Query query = entityManager.createNativeQuery("select * from interaccion LEFT JOIN idea ON interaccion.idea = idea.id where interaccion.usuario=?",Interaccion.class);
+        Query query = entityManager.createNativeQuery("select * from interaccion where usuario=?",Interaccion.class);
         
         query.setParameter(1, user );
         
