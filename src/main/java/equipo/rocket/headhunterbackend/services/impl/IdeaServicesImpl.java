@@ -96,4 +96,9 @@ public class IdeaServicesImpl implements IdeaServices {
             return ir.getDestacadas();
         }
 
+        @Override
+        public List<String> getCategorias() {
+            return ir.getCategorias();
+        }
+
 }

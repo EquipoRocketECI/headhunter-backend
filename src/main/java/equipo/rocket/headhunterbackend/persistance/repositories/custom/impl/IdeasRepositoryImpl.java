@@ -112,4 +112,11 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
     }
 
+    @Override
+    public List<String> getCategorias(){
+        Query query = entityManager.createNativeQuery("SELECT idea.categoria FROM idea GROUP BY idea.categoria");
+
+        return query.getResultList();
+    }
+
 }

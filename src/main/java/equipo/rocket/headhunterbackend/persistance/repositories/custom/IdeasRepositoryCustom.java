@@ -8,23 +8,26 @@ import equipo.rocket.headhunterbackend.model.ExpertosRequeridos;
 import equipo.rocket.headhunterbackend.model.Idea;
 
 public interface IdeasRepositoryCustom {
-    
+
 	@Transactional
-    public Idea postIdea(Idea idea);
-	
+	public Idea postIdea(Idea idea);
+
 	@Transactional
 	public void putIdea(Idea idea);
-	
+
 	@Transactional
 	public void addMonto(int idIdea, int newMontoRecolectado);
-	
+
 	@Transactional
 	public void postExpert(ExpertosRequeridos exp);
-	
+
 	@Transactional
 	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea);
-        
-        @Transactional
-        public List<Idea> getDestacadas();
-	
+
+	@Transactional
+	public List<Idea> getDestacadas();
+
+	@Transactional
+	public List<String> getCategorias();
+
 }

@@ -49,6 +49,16 @@ public class IdeasAPIController {
 
     }
 
+    @RequestMapping(path = "/categorias",method = RequestMethod.GET)
+    public ResponseEntity<?> getCategorias(){
+        try {
+            return new ResponseEntity<>(is.getCategorias(),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        }
+        
+    }
+
     @RequestMapping(method = RequestMethod.POST)	
     public ResponseEntity<?> postIdeas(@RequestBody Idea idea){
         try {
