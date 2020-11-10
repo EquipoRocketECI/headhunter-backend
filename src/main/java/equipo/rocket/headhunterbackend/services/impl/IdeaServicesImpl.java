@@ -53,52 +53,56 @@ public class IdeaServicesImpl implements IdeaServices {
         return ideas;
     }
 
-	@Override
-	public Idea getIdeaByID(int idIdea)  throws  HeadHunterNotFoundException{
-		try{
+    @Override
+    public Idea getIdeaByID(int idIdea) throws HeadHunterNotFoundException {
+        try {
             Idea idea = ir.findById(idIdea).get();
             return idea;
-        }
-        catch(java.util.NoSuchElementException e){
-           throw new HeadHunterNotFoundException("No existe la idea");
-        } 
-	
-	}
-
-	@Override
-	public void putIdea(Idea idea)  throws  HeadHunterNotFoundException{
-		getIdeaByID(idea.getId());
-		ir.putIdea(idea);
-		
-	}
-
-	@Override
-	public void addMonto(int idIdea, int donacion)  throws  HeadHunterNotFoundException{
-		Idea idea = getIdeaByID(idIdea);
-		int newMontoRecolectado = idea.getMontoRecolectado()+donacion;
-		ir.addMonto(idIdea, newMontoRecolectado);
-	}
-
-	@Override
-	public void postExpert(ExpertosRequeridos exp) {
-		ir.postExpert(exp);
-		
-	}
-
-	@Override
-	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea)  throws  HeadHunterNotFoundException{
-		getIdeaByID(idIdea);
-		return ir.getExpertsByIdea(idIdea);
-	}
-	
-        @Override
-	public List<Idea> getDestacadas(){
-            return ir.getDestacadas();
+        } catch (java.util.NoSuchElementException e) {
+            throw new HeadHunterNotFoundException("No existe la idea");
         }
 
-        @Override
-        public List<String> getCategorias() {
-            return ir.getCategorias();
-        }
+    }
+
+    @Override
+    public void putIdea(Idea idea) throws HeadHunterNotFoundException {
+        getIdeaByID(idea.getId());
+        ir.putIdea(idea);
+
+    }
+
+    @Override
+    public void addMonto(int idIdea, int donacion) throws HeadHunterNotFoundException {
+        Idea idea = getIdeaByID(idIdea);
+        int newMontoRecolectado = idea.getMontoRecolectado() + donacion;
+        ir.addMonto(idIdea, newMontoRecolectado);
+    }
+
+    @Override
+    public void postExpert(ExpertosRequeridos exp) {
+        ir.postExpert(exp);
+
+    }
+
+    @Override
+    public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) throws HeadHunterNotFoundException {
+        getIdeaByID(idIdea);
+        return ir.getExpertsByIdea(idIdea);
+    }
+
+    @Override
+    public List<Idea> getDestacadas() {
+        return ir.getDestacadas();
+    }
+
+    @Override
+    public List<String> getCategorias() {
+        return ir.getCategorias();
+    }
+
+    @Override
+    public List<Idea> getIdeasByUser(String userEmail) {
+        return ir.getIdeasByUser(userEmail);
+    }
 
 }

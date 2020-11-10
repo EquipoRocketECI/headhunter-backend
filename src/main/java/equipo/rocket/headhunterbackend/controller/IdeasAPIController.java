@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import equipo.rocket.headhunterbackend.services.IdeaServices;
@@ -57,6 +58,15 @@ public class IdeasAPIController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
         
+    }
+
+    @RequestMapping(params = {"user"}, method = RequestMethod.GET)
+    public ResponseEntity<?> getIdeasByUser(@RequestParam("user") String userEmail){
+        try {
+            return new ResponseEntity<>(is.getIdeasByUser(userEmail), HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     @RequestMapping(method = RequestMethod.POST)	

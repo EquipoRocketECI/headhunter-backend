@@ -30,5 +30,7 @@ public interface IdeaServices {
 		public List<Idea> getDestacadas();
 		
 		public List<String> getCategorias();
+
+		public List<Idea> getIdeasByUser(String userEmail);
     
 }

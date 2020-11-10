@@ -119,4 +119,12 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
         return query.getResultList();
     }
 
+    @Override
+    public List<Idea> getIdeasByUser(String userEmail) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM idea WHERE propietario=?",Idea.class);
+
+        query.setParameter(1, userEmail);
+        return query.getResultList();
+    }
+
 }

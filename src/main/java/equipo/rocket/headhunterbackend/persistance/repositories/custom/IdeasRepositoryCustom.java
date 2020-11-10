@@ -30,4 +30,7 @@ public interface IdeasRepositoryCustom {
 	@Transactional
 	public List<String> getCategorias();
 
+	@Transactional
+	public List<Idea> getIdeasByUser(String userEmail);
+
 }
