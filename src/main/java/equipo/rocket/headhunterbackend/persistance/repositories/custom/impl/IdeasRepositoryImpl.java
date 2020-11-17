@@ -10,6 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.FullTextQuery;
+import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.jpa.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +30,7 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
     EntityManager entityManager;
 
     public IdeasRepositoryImpl() {
-        
+
     }
 
     @Override
@@ -42,78 +46,71 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
                 .setParameter(11, idea.isPequenasdonaciones()).setParameter(12, idea.isGrandesinversiones())
                 .setParameter(13, idea.isExpertospersonal()).setParameter(14, idea.getImagen())
                 .setParameter(15, idea.getPropietario()).executeUpdate();
-        
-        Query query2 = entityManager.createNativeQuery("select * from idea where id=(select max(id) from idea)",Idea.class);
-		
-		
-		return (Idea) query2.getResultList().get(0);
-        
+
+        Query query2 = entityManager.createNativeQuery("select * from idea where id=(select max(id) from idea)",
+                Idea.class);
+
+        return (Idea) query2.getResultList().get(0);
+
     }
 
-	@Override
-	public void putIdea(Idea idea) {
-		Query query = entityManager.createNativeQuery("update idea set nombre=?,descripcion=?,fechalimite=?,montolimite=?,categoria=?,calificacion=?,adquisiciontemprana=?,descuento=?,versionpremium=?,pequenasdonaciones=?,grandesinversiones=?,expertospersonal=?,imagen=? where id=? ",Idea.class);
-        
-        	query.setParameter(1,idea.getNombre() )
-                .setParameter(2,idea.getDescripcion())
-                .setParameter(3, idea.getFechaLimite())
-                .setParameter(4,  idea.getMontoLimite())
-                .setParameter(5,  idea.getCategoria())
-                .setParameter(6, idea.getCalificacion())
-                .setParameter(7, idea.isAdquisiciontemprana())
-                .setParameter(8, idea.isDescuento())
-                .setParameter(9, idea.isVersionpremium())
-                .setParameter(10, idea.isPequenasdonaciones())
-                .setParameter(11, idea.isGrandesinversiones())
-                .setParameter(12, idea.isExpertospersonal())
-                .setParameter(13, idea.getImagen())
-                .setParameter(14, idea.getId())
-                .executeUpdate();
-		
-	}
+    @Override
+    public void putIdea(Idea idea) {
+        Query query = entityManager.createNativeQuery(
+                "update idea set nombre=?,descripcion=?,fechalimite=?,montolimite=?,categoria=?,calificacion=?,adquisiciontemprana=?,descuento=?,versionpremium=?,pequenasdonaciones=?,grandesinversiones=?,expertospersonal=?,imagen=? where id=? ",
+                Idea.class);
 
-	@Override
-	public void addMonto(int idIdea ,int newMontoRecolectado) {
-		Query query = entityManager.createNativeQuery("update idea set montorecolectado=? where id=? ",Idea.class);
-        
-    	query.setParameter(1,newMontoRecolectado)
-            .setParameter(2,idIdea)
-            .executeUpdate();
-		
-	}
+        query.setParameter(1, idea.getNombre()).setParameter(2, idea.getDescripcion())
+                .setParameter(3, idea.getFechaLimite()).setParameter(4, idea.getMontoLimite())
+                .setParameter(5, idea.getCategoria()).setParameter(6, idea.getCalificacion())
+                .setParameter(7, idea.isAdquisiciontemprana()).setParameter(8, idea.isDescuento())
+                .setParameter(9, idea.isVersionpremium()).setParameter(10, idea.isPequenasdonaciones())
+                .setParameter(11, idea.isGrandesinversiones()).setParameter(12, idea.isExpertospersonal())
+                .setParameter(13, idea.getImagen()).setParameter(14, idea.getId()).executeUpdate();
 
-	@Override
-	public void postExpert(ExpertosRequeridos exp) {
-		Query query = entityManager.createNativeQuery(
+    }
+
+    @Override
+    public void addMonto(int idIdea, int newMontoRecolectado) {
+        Query query = entityManager.createNativeQuery("update idea set montorecolectado=? where id=? ", Idea.class);
+
+        query.setParameter(1, newMontoRecolectado).setParameter(2, idIdea).executeUpdate();
+
+    }
+
+    @Override
+    public void postExpert(ExpertosRequeridos exp) {
+        Query query = entityManager.createNativeQuery(
                 "insert into expertosrequeridos values (NEXTVAL('serialExpertosRequeridos'),?,?)", Idea.class);
 
-        query.setParameter(1, exp.getArea())
-        	  .setParameter(2, exp.getIdea())
-              .executeUpdate();
-		
-	}
+        query.setParameter(1, exp.getArea()).setParameter(2, exp.getIdea()).executeUpdate();
 
-	@Override
-	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) {
-        
-        Query query = entityManager.createNativeQuery("select * from expertosrequeridos where idea=?",ExpertosRequeridos.class);
-		
-		query.setParameter(1, idIdea);
-		return query.getResultList();
-		
-	}
-    
+    }
+
     @Override
-    public List<Idea> getDestacadas(){
-        
-        Query query = entityManager.createNativeQuery("SELECT idea.id,idea.nombre,idea.descripcion,idea.fechalimite,idea.montolimite, idea.montorecolectado, idea.categoria, idea.calificacion,idea.adquisiciontemprana , idea.descuento , idea.versionpremium , idea.pequenasdonaciones , idea.grandesinversiones , idea.expertospersonal , idea.fechapublicacion , idea.imagen , idea.propietario ,idea.fase, count(idea.id) as conteo FROM idea LEFT JOIN interaccion ON idea.id = interaccion.idea group by idea.id order by conteo desc limit 5",Idea.class);
-        
+    public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) {
+
+        Query query = entityManager.createNativeQuery("select * from expertosrequeridos where idea=?",
+                ExpertosRequeridos.class);
+
+        query.setParameter(1, idIdea);
         return query.getResultList();
 
     }
 
     @Override
-    public List<String> getCategorias(){
+    public List<Idea> getDestacadas() {
+
+        Query query = entityManager.createNativeQuery(
+                "SELECT idea.id,idea.nombre,idea.descripcion,idea.fechalimite,idea.montolimite, idea.montorecolectado, idea.categoria, idea.calificacion,idea.adquisiciontemprana , idea.descuento , idea.versionpremium , idea.pequenasdonaciones , idea.grandesinversiones , idea.expertospersonal , idea.fechapublicacion , idea.imagen , idea.propietario ,idea.fase, count(idea.id) as conteo FROM idea LEFT JOIN interaccion ON idea.id = interaccion.idea group by idea.id order by conteo desc limit 5",
+                Idea.class);
+
+        return query.getResultList();
+
+    }
+
+    @Override
+    public List<String> getCategorias() {
         Query query = entityManager.createNativeQuery("SELECT idea.categoria FROM idea GROUP BY idea.categoria");
 
         return query.getResultList();
@@ -121,10 +118,40 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
     @Override
     public List<Idea> getIdeasByUser(String userEmail) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM idea WHERE propietario=?",Idea.class);
+        Query query = entityManager.createNativeQuery("SELECT * FROM idea WHERE propietario=?", Idea.class);
 
         query.setParameter(1, userEmail);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Idea> getIdeasByFuzzyQuery(String ideaName) {
+        Query query = getJpaQuery(getQueryBuilder().keyword().fuzzy().withEditDistanceUpTo(1).withPrefixLength(0)
+                .onField("nombre").matching(ideaName).createQuery());
+        return query.getResultList();
+    }
+
+    private FullTextQuery getJpaQuery(org.apache.lucene.search.Query luceneQuery) {
+
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+        try {
+            fullTextEntityManager.createIndexer().startAndWait();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return fullTextEntityManager.createFullTextQuery(luceneQuery, Idea.class);
+    }
+
+    private QueryBuilder getQueryBuilder() {
+
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+
+        return fullTextEntityManager.getSearchFactory()
+            .buildQueryBuilder()
+            .forEntity(Idea.class)
+            .get();
     }
 
 }

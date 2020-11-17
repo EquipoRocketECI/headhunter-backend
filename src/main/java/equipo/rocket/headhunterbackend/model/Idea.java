@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.TermVector;
+
 @Entity
+@Indexed
 @Table(name="idea")
 public class Idea implements Serializable{
 
@@ -21,6 +26,7 @@ public class Idea implements Serializable{
 	@Column(name="id")
 	private int id;
 	
+	@Field
 	@Column(name="nombre")
     private String nombre;
 	
@@ -230,6 +236,17 @@ public class Idea implements Serializable{
 	}
 	public void setFase(String fase) {
 		this.fase = fase;
+	}
+
+	@Override
+	public String toString() {
+		return "Idea [adquisiciontemprana=" + adquisiciontemprana + ", calificacion=" + calificacion + ", categoria="
+				+ categoria + ", descripcion=" + descripcion + ", descuento=" + descuento + ", expertospersonal="
+				+ expertospersonal + ", fase=" + fase + ", fechaLimite=" + fechaLimite + ", fechapublicacion="
+				+ fechapublicacion + ", grandesinversiones=" + grandesinversiones + ", id=" + id + ", imagen=" + imagen
+				+ ", montoLimite=" + montoLimite + ", montoRecolectado=" + montoRecolectado + ", nombre=" + nombre
+				+ ", pequenasdonaciones=" + pequenasdonaciones + ", propietario=" + propietario + ", versionpremium="
+				+ versionpremium + "]";
 	}
 
 }

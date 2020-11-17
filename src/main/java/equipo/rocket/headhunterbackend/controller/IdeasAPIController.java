@@ -69,6 +69,16 @@ public class IdeasAPIController {
         }
     }
 
+    @RequestMapping(params = {"q"},method = RequestMethod.GET)
+    public ResponseEntity<?> getIdeasByFuzzyQuery(@RequestParam("q") String ideaName){
+        try {
+            
+            return new ResponseEntity<>(is.getIdeasByFuzzyQuery(ideaName),HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping(method = RequestMethod.POST)	
     public ResponseEntity<?> postIdeas(@RequestBody Idea idea){
         try {

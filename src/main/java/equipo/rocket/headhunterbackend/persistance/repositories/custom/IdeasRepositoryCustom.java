@@ -33,4 +33,7 @@ public interface IdeasRepositoryCustom {
 	@Transactional
 	public List<Idea> getIdeasByUser(String userEmail);
 
+	@Transactional
+	public List<Idea> getIdeasByFuzzyQuery(String query);
+
 }

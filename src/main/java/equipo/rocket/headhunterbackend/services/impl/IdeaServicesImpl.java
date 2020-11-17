@@ -105,4 +105,9 @@ public class IdeaServicesImpl implements IdeaServices {
         return ir.getIdeasByUser(userEmail);
     }
 
+    @Override
+    public List<Idea> getIdeasByFuzzyQuery(String ideaName) {
+        return ir.getIdeasByFuzzyQuery(ideaName);
+    }
+
 }

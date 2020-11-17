@@ -27,10 +27,11 @@ public interface IdeaServices {
 	
 	public List<ExpertosRequeridos> getExpertsByIdea(int idIdea) throws  HeadHunterNotFoundException;
         
-		public List<Idea> getDestacadas();
+	public List<Idea> getDestacadas();
 		
-		public List<String> getCategorias();
+	public List<String> getCategorias();
 
-		public List<Idea> getIdeasByUser(String userEmail);
-    
+	public List<Idea> getIdeasByUser(String userEmail);
+	
+	public List<Idea> getIdeasByFuzzyQuery(String ideaName);
 }
