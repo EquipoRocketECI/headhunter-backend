@@ -126,7 +126,7 @@ public class IdeasRepositoryImpl implements IdeasRepositoryCustom {
 
     @Override
     public List<Idea> getIdeasByFuzzyQuery(String ideaName) {
-        Query query = getJpaQuery(getQueryBuilder().keyword().fuzzy().withEditDistanceUpTo(1).withPrefixLength(0)
+        Query query = getJpaQuery(getQueryBuilder().keyword().fuzzy().withEditDistanceUpTo(2).withPrefixLength(0)
                 .onField("nombre").matching(ideaName).createQuery());
         return query.getResultList();
     }
